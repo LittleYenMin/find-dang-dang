@@ -3,6 +3,9 @@ import os
 import mrcnn.utils
 import mrcnn.model
 import mrcnn.config
+import dotenv
+
+dotenv.load_dotenv()
 
 
 # Configuration that will be used by the Mask-RCNN library
