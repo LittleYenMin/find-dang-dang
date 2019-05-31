@@ -1,0 +1,9 @@
+2.0.8
+logs
+venv
+
+# IDE
+.idea
+
+# COCO trained dataset
+mask_rcnn_coco.h5

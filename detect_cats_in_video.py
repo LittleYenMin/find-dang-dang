@@ -28,6 +28,16 @@ def get_car_boxes(boxes, class_ids):
     return np.array(car_boxes)
 
 
+# Filter a list of Mask R-CNN detection results to get only the detected cats / dogs
+def get_pet_boxes(boxes, class_ids):
+    pet_boxes = []
+    for i, box in enumerate(boxes):
+        # If the detected object isn't a car / truck, skip it
+        if class_ids[i] in [16, 17]:
+            pet_boxes.append(box)
+    return np.array(pet_boxes)
+
+
 # Root directory of the project
 ROOT_DIR = Path(".")
 
@@ -45,7 +55,7 @@ if not os.path.exists(COCO_MODEL_PATH):
 IMAGE_DIR = os.path.join(ROOT_DIR, "images")
 
 # Video file or camera to process - set this to 0 to use your webcam instead of a video file
-VIDEO_SOURCE = "test_images/parking.mp4"
+VIDEO_SOURCE = "test_images/pets.mp4"
 
 # Create a Mask-RCNN model in inference mode
 model = MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=MaskRCNNConfig())
@@ -82,13 +92,13 @@ while video_capture.isOpened():
     # - r['masks'] are the object masks for each detected object (which gives you the object outline)
 
     # Filter the results to only grab the car / truck bounding boxes
-    car_boxes = get_car_boxes(r['rois'], r['class_ids'])
+    pet_boxes = get_pet_boxes(r['rois'], r['class_ids'])
 
-    print("Cars found in frame of video:")
+    print("Pets found in frame of video:")
 
     # Draw each box on the frame
-    for box in car_boxes:
-        print("Car: ", box)
+    for box in pet_boxes:
+        print("pet: ", box)
 
         y1, x1, y2, x2 = box
 
