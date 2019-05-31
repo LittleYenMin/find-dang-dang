@@ -4,6 +4,7 @@ venv
 
 # IDE
 .idea
+__pycache__
 
 # COCO trained dataset
 mask_rcnn_coco.h5
