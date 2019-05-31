@@ -9,4 +9,4 @@ Pre Installation
 Demo
 -------
 Draw the box in dang dang by Mask-R-CNN detection.
-![Demo Picture](readme/demo.jpg)
+![Demo Picture](readme/mask.png)
